@@ -11,7 +11,7 @@ using System.Text;
 using MongoDB.Driver;
 using System.Collections;
 
-namespace MongoDBXtras
+namespace MongoDB.Xtras
 {
     public static class MongoSerializer
     {
