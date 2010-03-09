@@ -74,10 +74,14 @@ namespace Tests
             Document doc = new Document();
             doc.Fill(
                 Width => 100,
-                Height => 200);
+                Height => 200,
+                Attributes => new Pairs{ attr1 => 1, 
+                                         attr2 => 2 });
 
             Assert.AreEqual(100, (int)doc["Width"]);
             Assert.AreEqual(200, (int)doc["Height"]);
+            Assert.IsInstanceOfType(doc["Attributes"], typeof(Document));
+
         }
     }
 }
