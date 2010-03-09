@@ -1,9 +1,8 @@
-﻿using MongoSerializer;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MongoDB.Driver;
 using System.Collections;
 using System.Linq;
-using MongoDBXtras;
+using MongoDB.Xtras;
 namespace MongoSerializerTest
 {
     /// <summary>

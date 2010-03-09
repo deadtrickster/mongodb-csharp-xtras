@@ -17,89 +17,10 @@ using MongoDB.Driver;
 using System.Data.Common;
 using System.Diagnostics;
 using System.Security.Cryptography;
+using MongoDB.Xtras;
 
 namespace System.Web.Security
 {
-    class MongoDBConnection : IDisposable
-    {
-        Mongo m;
-        string database;
-
-        public MongoDBConnection(Mongo m, string database)
-        {
-            this.m = m;
-            this.database = database;
-            m.Connect();
-        }
-
-        public Database Database
-        {
-            get { return m.getDB(database); }
-        }
-
-        #region IDisposable Members
-
-        public void Dispose()
-        {
-            m.Disconnect();
-        }
-
-        #endregion
-    }
-
-
-    class ConnectionManager
-    {
-        DbConnectionStringBuilder builder
-                = new DbConnectionStringBuilder();
-
-
-
-        internal ConnectionManager(string connectionString)
-        {
-            builder.ConnectionString = connectionString;
-        }
-
-        public MongoDBConnection newConnection()
-        {
-            Mongo m;
-
-            string database;
-
-            if (!builder.ContainsKey("db"))
-            {
-                throw new ProviderException("unknown database");
-            }
-
-            database = (string)builder["db"];
-
-            if (builder.ContainsKey("host"))
-            {
-                string host = (string)builder["host"];
-
-                if (builder.ContainsKey("port"))
-                {
-                    string portstr = (string)builder["port"];
-
-                    int port;
-
-                    if (!int.TryParse(portstr, out port))
-                    {
-                        throw new ProviderException("unable to parse port " + portstr);
-                    }
-
-                    m = new Mongo(host, port);
-                }
-
-                m = new Mongo(host);
-            }
-            else
-                m = new Mongo();
-
-            return new MongoDBConnection(m, database);
-        }
-    }
-
     public class MongoDBMembershipProvider : MembershipProvider
     {
         //
@@ -269,7 +190,7 @@ namespace System.Web.Security
 
             try
             {
-                using (MongoDBConnection conn = cm.newConnection())
+                using (MongoDBConnection conn = cm.New)
                 {
                     var collection = conn.Database.GetCollection("aspnet_members");
                     using (var cursor = collection.Find(new Document().Append("Username", username).Append("ApplicationName", pApplicationName)))
@@ -313,7 +234,7 @@ namespace System.Web.Security
 
             try
             {
-                using (MongoDBConnection conn = cm.newConnection())
+                using (var conn = cm.New)
                 {
                     var collection = conn.Database.GetCollection("aspnet_members");
                     using (var cursor = collection.Find(new Document().Append("Username", username).Append("ApplicationName", pApplicationName)))
@@ -393,7 +314,7 @@ namespace System.Web.Security
                 try
                 {
 
-                    using (MongoDBConnection conn = cm.newConnection())
+                    using (var conn = cm.New)
                     {
                         var collection = conn.Database.GetCollection("aspnet_members");
 
@@ -450,7 +371,7 @@ namespace System.Web.Security
         {
             try
             {
-                using (MongoDBConnection conn = cm.newConnection())
+                using (var conn = cm.New)
                 {
                     var collection = conn.Database.GetCollection("aspnet_members");
                     using (var cursor = collection.Find(new Document().Append("Username", username).Append("ApplicationName", pApplicationName)))
@@ -515,7 +436,7 @@ namespace System.Web.Security
 
             try
             {
-                using (MongoDBConnection conn = cm.newConnection())
+                using (var conn = cm.New)
                 {
                     var collection = conn.Database.GetCollection("aspnet_members");
 
@@ -554,7 +475,7 @@ namespace System.Web.Security
 
             try
             {
-                using (MongoDBConnection conn = cm.newConnection())
+                using (var conn = cm.New)
                 {
                     var collection = conn.Database.GetCollection("aspnet_members");
 
@@ -600,7 +521,7 @@ namespace System.Web.Security
 
             try
             {
-                using (MongoDBConnection conn = cm.newConnection())
+                using (var conn = cm.New)
                 {
                     var collection = conn.Database.GetCollection("aspnet_members");
 
@@ -660,7 +581,7 @@ namespace System.Web.Security
 
             try
             {
-                using (MongoDBConnection conn = cm.newConnection())
+                using (var conn = cm.New)
                 {
                     var collection = conn.Database.GetCollection("aspnet_members");
 
@@ -704,7 +625,7 @@ namespace System.Web.Security
             try
             {
 
-                using (MongoDBConnection conn = cm.newConnection())
+                using (var conn = cm.New)
                 {
                     var collection = conn.Database.GetCollection("aspnet_members");
 
@@ -751,7 +672,7 @@ namespace System.Web.Security
             try
             {
 
-                using (MongoDBConnection conn = cm.newConnection())
+                using (var conn = cm.New)
                 {
                     var collection = conn.Database.GetCollection("aspnet_members");
 
@@ -867,7 +788,7 @@ namespace System.Web.Security
             try
             {
 
-                using (MongoDBConnection conn = cm.newConnection())
+                using (var conn = cm.New)
                 {
                     var collection = conn.Database.GetCollection("aspnet_members");
 
@@ -924,7 +845,7 @@ namespace System.Web.Security
         {
             try
             {
-                using (MongoDBConnection conn = cm.newConnection())
+                using (var conn = cm.New)
                 {
                     var collection = conn.Database.GetCollection("aspnet_members");
 
@@ -964,7 +885,7 @@ namespace System.Web.Security
         {
             try
             {
-                using (MongoDBConnection conn = cm.newConnection())
+                using (var conn = cm.New)
                 {
                     var collection = conn.Database.GetCollection("aspnet_members");
 
@@ -1005,7 +926,7 @@ namespace System.Web.Security
 
             try
             {
-                using (MongoDBConnection conn = cm.newConnection())
+                using (var conn = cm.New)
                 {
                     var collection = conn.Database.GetCollection("aspnet_members");
 
@@ -1070,7 +991,7 @@ namespace System.Web.Security
 
             try
             {
-                using (MongoDBConnection conn = cm.newConnection())
+                using (var conn = cm.New)
                 {
                     var collection = conn.Database.GetCollection("aspnet_members");
 

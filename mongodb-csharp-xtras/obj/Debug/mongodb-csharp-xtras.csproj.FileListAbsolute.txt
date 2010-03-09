@@ -1,7 +1,7 @@
-C:\Work\libs\mongodb-csharp-xtras\mongodb-csharp-xtras\bin\Debug\mongodb-csharp-xtras.dll
-C:\Work\libs\mongodb-csharp-xtras\mongodb-csharp-xtras\bin\Debug\mongodb-csharp-xtras.pdb
 C:\Work\libs\mongodb-csharp-xtras\mongodb-csharp-xtras\bin\Debug\MongoDB.Driver.dll
 C:\Work\libs\mongodb-csharp-xtras\mongodb-csharp-xtras\bin\Debug\MongoDB.Driver.pdb
 C:\Work\libs\mongodb-csharp-xtras\mongodb-csharp-xtras\obj\Debug\ResolveAssemblyReference.cache
-C:\Work\libs\mongodb-csharp-xtras\mongodb-csharp-xtras\obj\Debug\mongodb-csharp-xtras.dll
-C:\Work\libs\mongodb-csharp-xtras\mongodb-csharp-xtras\obj\Debug\mongodb-csharp-xtras.pdb
+C:\Work\libs\mongodb-csharp-xtras\mongodb-csharp-xtras\bin\Debug\MongoDB.Xtras.dll
+C:\Work\libs\mongodb-csharp-xtras\mongodb-csharp-xtras\bin\Debug\MongoDB.Xtras.pdb
+C:\Work\libs\mongodb-csharp-xtras\mongodb-csharp-xtras\obj\Debug\MongoDB.Xtras.dll
+C:\Work\libs\mongodb-csharp-xtras\mongodb-csharp-xtras\obj\Debug\MongoDB.Xtras.pdb
